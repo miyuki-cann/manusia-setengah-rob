@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Surprise</title>
+    <style>
+        body {
+            background: linear-gradient(to right, pink, lightpink, deeppink);
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+        h1, h2 {
+            display: none;
+            font-size: 3em;
+            text-shadow: 2px 2px 5px black;
+            animation: fadeIn 2s ease-in-out;
+        }
+        #dateText {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+        #message {
+            display: none;
+            font-size: 1.5em;
+            margin-top: 20px;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in-out;
+        }
+        button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            background-color: white;
+            color: red;
+            cursor: pointer;
+            border-radius: 10px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .heart {
+            position: absolute;
+            font-size: 2em;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            from { transform: translateY(100vh) scale(1); opacity: 1; }
+            to { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h2 id="dateText">💖 14 Februari 2024 💖</h2>
+    <button onclick="showText()">Klik yang ini sayanggg</button>
+    <h1 id="valentineText">💖 Happy Valentine’s Day Sayangkuu Cintakuu Sandy Akbar 💖</h1>
+    <button id="showMessageButton" onclick="showMessage(event)" style="display:none;">Klik Disini ya Cintakuuu</button>
+    <p id="message">💞 Makasih ya sayangg udah sayang sama aku, aku sayang kamuuuuu muachhh 💞</p>
+
+    <script>
+        function showText() {
+            document.getElementById('valentineText').style.display = 'block';
+            document.getElementById('showMessageButton').style.display = 'block';
+            document.getElementById('dateText').style.display = 'none';
+            event.target.style.display = 'none';
+        }
+
+        function showMessage(event) {
+            event.stopPropagation();
+            document.getElementById('message').style.display = 'block';
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = Math.random() > 0.5 ? "🤍" : "💗";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
